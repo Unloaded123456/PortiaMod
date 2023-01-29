@@ -1,22 +1,24 @@
 package unload.portia;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import unload.portia.*;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.block.*;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.block.material.Material;
-
 import cpw.mods.fml.common.registry.GameRegistry;
-@Mod(modid = "portia", name = "Portia", version = "0.1.1")
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.EnumHelper;
+import unload.portia.access.*;
+import unload.portia.armor.EmeraldArmor;
+
+@Mod(modid = "portia", name = "Portia", version = "0.2")
 public class Main {
 	public static Block oldCloth;
     public static Block barrier;
@@ -24,8 +26,20 @@ public class Main {
     public static Block glazedTerracotta;
     public static Block coloredWood;
     public static Block coloredStone;
+    public static Block coloredCobblestone;
+    public static final Item.ToolMaterial emeraldItems = EnumHelper.addToolMaterial("emerald_items", 3, 950, 2.8F, 2.5F, 15);
+    public static final ItemArmor.ArmorMaterial emeraldArmor = EnumHelper.addArmorMaterial("emerald_armor", 29, new int[]{3,7,5,3}, 18);
     public static Item chain;
     public static Item ironNugget;
+    public static Item emeraldPickaxe;
+    public static Item emeraldAxe;
+    public static Item emeraldShovel;
+    public static Item emeraldHoe;
+    public static Item emeraldSword;
+    public static Item emeraldHelmet;
+    public static Item emeraldChestplate;
+    public static Item emeraldLeggings;
+    public static Item emeraldBoots;
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 		oldCloth = new BlockClassicCloth(Material.cloth).setBlockName("cloth").setStepSound(Block.soundTypeCloth).setHardness(0.8F).setBlockTextureName("portia:cloth").setCreativeTab(portiaBlocks);
@@ -40,11 +54,31 @@ public class Main {
         GameRegistry.registerBlock(coloredWood, MetadataItemBlocks.class, "colored_wood");
         coloredStone = new BlockColored(Material.rock).setBlockName("stoneColored").setHardness(1.5F).setResistance(10F).setBlockTextureName("portia:stonecolored").setCreativeTab(portiaBlocks);
         GameRegistry.registerBlock(coloredStone, MetadataItemBlocks.class, "colored_stone");
+        coloredCobblestone = new BlockColored(Material.rock).setBlockName("cobbleColored").setBlockTextureName("portia:cobblecolored").setCreativeTab(portiaBlocks);
+        GameRegistry.registerBlock(coloredCobblestone, MetadataItemBlocks.class, "colored_cobblestone");
 
         chain = new Item().setUnlocalizedName("chain").setTextureName("portia:chain").setCreativeTab(portiaItems);
         GameRegistry.registerItem(chain, "chain");
         ironNugget = new Item().setUnlocalizedName("ironNugget").setTextureName("portia:iron_nugget").setCreativeTab(portiaItems);
         GameRegistry.registerItem(ironNugget, "iron_nugget");
+        emeraldPickaxe = new ModPickaxe(emeraldItems).setUnlocalizedName("emeraldPickaxe").setTextureName("portia:emerald_pickaxe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldPickaxe, "emerald_pickaxe");
+        emeraldAxe = new ModAxe(emeraldItems).setUnlocalizedName("emeraldAxe").setTextureName("portia:emerald_axe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldAxe, "emerald_axe");
+        emeraldShovel = new ModSpade(emeraldItems).setUnlocalizedName("emeraldShovel").setTextureName("portia:emerald_shovel").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldShovel, "emerald_shovel");
+        emeraldHoe = new ModHoe(emeraldItems).setUnlocalizedName("emeraldHoe").setTextureName("portia:emerald_hoe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldHoe, "emerald_hoe");
+        emeraldSword = new ModSword(emeraldItems).setUnlocalizedName("emeraldSword").setTextureName("portia:emerald_sword").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldSword, "emerald_sword");
+        emeraldHelmet = new EmeraldArmor(emeraldArmor, 0, 0).setUnlocalizedName("emeraldHelmet").setTextureName("portia:emerald_helmet").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldHelmet, "emerald_helmet");
+        emeraldChestplate = new EmeraldArmor(emeraldArmor, 0, 1).setUnlocalizedName("emeraldChestplate").setTextureName("portia:emerald_chestplate").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldChestplate, "emerald_chestplate");
+        emeraldLeggings = new EmeraldArmor(emeraldArmor, 0, 2).setUnlocalizedName("emeraldLeggings").setTextureName("portia:emerald_leggings").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldLeggings, "emerald_leggings");
+        emeraldBoots = new EmeraldArmor(emeraldArmor, 0, 3).setUnlocalizedName("emeraldBoots").setTextureName("portia:emerald_boots").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldBoots, "emerald_boots");
     }
     @EventHandler
     public void init(FMLInitializationEvent event) {
@@ -59,6 +93,15 @@ public class Main {
 
         GameRegistry.addRecipe(new ItemStack(chain), new Object[]{"C", "C", "C", 'C', ironNugget});
         GameRegistry.addRecipe(new ItemStack(ironNugget, 9), new Object[]{"I", 'I', Items.iron_ingot});
+        GameRegistry.addRecipe(new ItemStack(emeraldPickaxe), new Object[]{"EEE", " S ", " S ", 'E', Items.emerald, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(emeraldAxe), new Object[]{"EE", "ES", " S", 'E', Items.emerald, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(emeraldShovel), new Object[]{"E", "S", "S", 'E', Items.emerald, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(emeraldHoe), new Object[]{"EE", " S", " S", 'E', Items.emerald, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(emeraldSword), new Object[]{"E", "E", "S", 'E', Items.emerald, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(emeraldHelmet), new Object[]{"EEE", "E E", 'E', Items.emerald});
+        GameRegistry.addRecipe(new ItemStack(emeraldChestplate), new Object[]{"E E", "EEE", "EEE", 'E', Items.emerald});
+        GameRegistry.addRecipe(new ItemStack(emeraldLeggings), new Object[]{"EEE", "E E", "E E", 'E', Items.emerald});
+        GameRegistry.addRecipe(new ItemStack(emeraldBoots), new Object[]{"E E", "E E", 'E', Items.emerald});
     }
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {

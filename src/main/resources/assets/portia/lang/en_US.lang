@@ -109,6 +109,15 @@ item.emeraldHelmet.name=Emerald Helmet
 item.emeraldChestplate.name=Emerald Chestplate
 item.emeraldLeggings.name=Emerald Leggings
 item.emeraldBoots.name=Emerald Boots
+item.redstonePickaxe.name=Redstone Pickaxe
+item.redstoneAxe.name=Redstone Axe
+item.redstoneShovel.name=Redstone Shovel
+item.redstoneHoe.name=Redstone Hoe
+item.redstoneSword.name=Redstone Sword
+item.redstoneHelmet.name=Redstone Helmet
+item.redstoneChestplate.name=Redstone Chestplate
+item.redstoneLeggings.name=Redstone Leggings
+item.redstoneBoots.name=Redstone Boots
 
 itemGroup.portiaBlocks=Portia Blocks
 itemGroup.portiaItems=Portia Items

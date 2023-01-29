@@ -78,11 +78,37 @@ tile.stoneColored_brown.name=Brown Stone
 tile.stoneColored_green.name=Green Stone
 tile.stoneColored_red.name=Red Stone
 tile.stoneColored_black.name=Black Stone
+tile.cobbleColored_white.name=White Cobblestone
+tile.cobbleColored_orange.name=Orange Cobblestone
+tile.cobbleColored_magenta.name=Magenta Cobblestone
+tile.cobbleColored_light_blue.name=Light Blue Cobblestone
+tile.cobbleColored_yellow.name=Yellow Cobblestone
+tile.cobbleColored_lime.name=Lime Cobblestone
+tile.cobbleColored_pink.name=Pink Cobblestone
+tile.cobbleColored_gray.name=Gray Cobblestone
+tile.cobbleColored_silver.name=Light Gray Cobblestone
+tile.cobbleColored_cyan.name=Cyan Cobblestone
+tile.cobbleColored_purple.name=Purple Cobblestone
+tile.cobbleColored_blue.name=Blue Cobblestone
+tile.cobbleColored_brown.name=Brown Cobblestone
+tile.cobbleColored_green.name=Green Cobblestone
+tile.cobbleColored_red.name=Red Cobblestone
+tile.cobbleColored_black.name=Black Cobblestone
 
 tile.barrier.name=Barrier
+tile.null.name=§4Undefined block!
 
 item.ironNugget.name=Iron Nugget
 item.chain.name=Chain
+item.emeraldPickaxe.name=Emerald Pickaxe
+item.emeraldAxe.name=Emerald Axe
+item.emeraldShovel.name=Emerald Shovel
+item.emeraldHoe.name=Emerald Hoe
+item.emeraldSword.name=Emerald Sword
+item.emeraldHelmet.name=Emerald Helmet
+item.emeraldChestplate.name=Emerald Chestplate
+item.emeraldLeggings.name=Emerald Leggings
+item.emeraldBoots.name=Emerald Boots
 
 itemGroup.portiaBlocks=Portia Blocks
 itemGroup.portiaItems=Portia Items

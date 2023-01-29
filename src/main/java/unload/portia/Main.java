@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import unload.portia.access.*;
 import unload.portia.armor.EmeraldArmor;
+import unload.portia.armor.RedstoneArmor;
 
 @Mod(modid = "portia", name = "Portia", version = "0.2")
 public class Main {
@@ -29,6 +30,8 @@ public class Main {
     public static Block coloredCobble;
     public static final Item.ToolMaterial emeraldItems = EnumHelper.addToolMaterial("emerald_items", 3, 950, 2.8F, 2.5F, 15);
     public static final ItemArmor.ArmorMaterial emeraldArmor = EnumHelper.addArmorMaterial("emerald_armor", 29, new int[]{3,7,5,3}, 18);
+    public static final Item.ToolMaterial redstoneItems = EnumHelper.addToolMaterial("redstone_items", 2, 680, 1.9F, 1.5F, 28);
+    public static final ItemArmor.ArmorMaterial redstoneArmor = EnumHelper.addArmorMaterial("redstone_armor", 25, new int[]{2,6,3,2}, 32);
     public static Item chain;
     public static Item ironNugget;
     public static Item emeraldPickaxe;
@@ -40,6 +43,15 @@ public class Main {
     public static Item emeraldChestplate;
     public static Item emeraldLeggings;
     public static Item emeraldBoots;
+    public static Item redstonePickaxe;
+    public static Item redstoneAxe;
+    public static Item redstoneShovel;
+    public static Item redstoneHoe;
+    public static Item redstoneSword;
+    public static Item redstoneHelmet;
+    public static Item redstoneChestplate;
+    public static Item redstoneLeggings;
+    public static Item redstoneBoots;
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 		oldCloth = new BlockClassicCloth(Material.cloth).setBlockName("cloth").setStepSound(Block.soundTypeCloth).setHardness(0.8F).setBlockTextureName("portia:cloth").setCreativeTab(portiaBlocks);
@@ -79,6 +91,24 @@ public class Main {
         GameRegistry.registerItem(emeraldLeggings, "emerald_leggings");
         emeraldBoots = new EmeraldArmor(emeraldArmor, 0, 3).setUnlocalizedName("emeraldBoots").setTextureName("portia:emerald_boots").setCreativeTab(portiaItems);
         GameRegistry.registerItem(emeraldBoots, "emerald_boots");
+        redstonePickaxe = new ModPickaxe(redstoneItems).setUnlocalizedName("redstonePickaxe").setTextureName("portia:redstone_pickaxe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstonePickaxe, "redstone_pickaxe");
+        redstoneAxe = new ModAxe(redstoneItems).setUnlocalizedName("redstoneAxe").setTextureName("portia:redstone_axe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstoneAxe, "redstone_axe");
+        redstoneShovel = new ModSpade(redstoneItems).setUnlocalizedName("redstoneShovel").setTextureName("portia:redstone_shovel").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstoneShovel, "redstone_shovel");
+        redstoneHoe = new ModHoe(redstoneItems).setUnlocalizedName("redstoneHoe").setTextureName("portia:redstone_hoe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstoneHoe, "redstone_hoe");
+        redstoneSword = new ModSword(redstoneItems).setUnlocalizedName("redstoneSword").setTextureName("portia:redstone_sword").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstoneSword, "redstone_sword");
+        redstoneHelmet = new RedstoneArmor(redstoneArmor, 0, 0).setUnlocalizedName("redstoneHelmet").setTextureName("portia:redstone_helmet").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstoneHelmet, "redstone_helmet");
+        redstoneChestplate = new RedstoneArmor(redstoneArmor, 0, 1).setUnlocalizedName("redstoneChestplate").setTextureName("portia:redstone_chestplate").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstoneChestplate, "redstone_chestplate");
+        redstoneLeggings = new RedstoneArmor(redstoneArmor, 0, 2).setUnlocalizedName("redstoneLeggings").setTextureName("portia:redstone_leggings").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstoneLeggings, "redstone_leggings");
+        redstoneBoots = new RedstoneArmor(redstoneArmor, 0, 3).setUnlocalizedName("redstoneBoots").setTextureName("portia:redstone_boots").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(redstoneBoots, "redstone_boots");
     }
     @EventHandler
     public void init(FMLInitializationEvent event) {
@@ -102,6 +132,16 @@ public class Main {
         GameRegistry.addRecipe(new ItemStack(emeraldChestplate), new Object[]{"E E", "EEE", "EEE", 'E', Items.emerald});
         GameRegistry.addRecipe(new ItemStack(emeraldLeggings), new Object[]{"EEE", "E E", "E E", 'E', Items.emerald});
         GameRegistry.addRecipe(new ItemStack(emeraldBoots), new Object[]{"E E", "E E", 'E', Items.emerald});
+        GameRegistry.addRecipe(new ItemStack(redstonePickaxe), new Object[]{"RRR", " S ", " S ", 'R', Items.redstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(redstoneAxe), new Object[]{"RR", "RS", " S", 'R', Items.redstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(redstoneShovel), new Object[]{"R", "S", "S", 'R', Items.redstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(redstoneHoe), new Object[]{"RR", " S", " S", 'R', Items.redstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(redstoneSword), new Object[]{"R", "R", "S", 'R', Items.redstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(redstoneHelmet), new Object[]{"RRR", "R R", 'R', Items.redstone});
+        GameRegistry.addRecipe(new ItemStack(redstoneChestplate), new Object[]{"R R", "RRR", "RRR", 'R', Items.redstone});
+        GameRegistry.addRecipe(new ItemStack(redstoneLeggings), new Object[]{"RRR", "R R", "R R", 'R', Items.redstone});
+        GameRegistry.addRecipe(new ItemStack(redstoneBoots), new Object[]{"R R", "R R", 'R', Items.redstone});
+
         GameRegistry.addRecipe(new ItemStack(oldCloth, 1, 0), new Object[]{"W", 'W', new ItemStack(Blocks.wool, 1, 0)});
         GameRegistry.addRecipe(new ItemStack(oldCloth, 1, 1), new Object[]{"W", 'W', new ItemStack(Blocks.wool, 1, 1)});
         GameRegistry.addRecipe(new ItemStack(oldCloth, 1, 2), new Object[]{"W", 'W', new ItemStack(Blocks.wool, 1, 2)});

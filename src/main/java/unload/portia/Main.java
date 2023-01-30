@@ -13,14 +13,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import unload.portia.access.*;
 import unload.portia.armor.EmeraldArmor;
 import unload.portia.armor.RedstoneArmor;
+import unload.portia.specialblocks.*;
 
 @Mod(modid = "portia", name = "Portia", version = "0.2")
 public class Main {
+
 	public static Block oldCloth;
     public static Block barrier;
     public static Block newConcrete;
@@ -28,6 +31,10 @@ public class Main {
     public static Block coloredWood;
     public static Block coloredStone;
     public static Block coloredCobble;
+    public static Block goldenDoor;
+    public static Block diamondDoor;
+    public static Block emeraldDoor;
+
     public static final Item.ToolMaterial emeraldItems = EnumHelper.addToolMaterial("emerald_items", 3, 950, 2.8F, 2.5F, 15);
     public static final ItemArmor.ArmorMaterial emeraldArmor = EnumHelper.addArmorMaterial("emerald_armor", 29, new int[]{3,7,5,3}, 18);
     public static final Item.ToolMaterial redstoneItems = EnumHelper.addToolMaterial("redstone_items", 2, 680, 1.9F, 1.5F, 28);
@@ -52,6 +59,10 @@ public class Main {
     public static Item redstoneChestplate;
     public static Item redstoneLeggings;
     public static Item redstoneBoots;
+
+    public static Item goldenDoorI;
+    public static Item diamondDoorI;
+    public static Item emeraldDoorI;
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 		oldCloth = new BlockClassicCloth(Material.cloth).setBlockName("cloth").setStepSound(Block.soundTypeCloth).setHardness(0.8F).setBlockTextureName("portia:cloth").setCreativeTab(portiaBlocks);
@@ -68,6 +79,12 @@ public class Main {
         GameRegistry.registerBlock(coloredStone, MetadataItemBlocks.class, "colored_stone");
         coloredCobble = new BlockColored(Material.rock).setBlockName("cobbleColored").setBlockTextureName("portia:cobblecolored").setCreativeTab(portiaBlocks);
         GameRegistry.registerBlock(coloredCobble, MetadataItemBlocks.class, "colored_cobblestone");
+        goldenDoor = new BlockGoldenDoor(Material.iron).setHardness(4.0F).setStepSound(Block.soundTypeMetal).setBlockName("doorGolden").setBlockTextureName("portia:golden_door");
+        GameRegistry.registerBlock(goldenDoor, "golden_door");
+        diamondDoor = new BlockDiamondDoor(Material.iron).setHardness(10F).setStepSound(Block.soundTypeMetal).setBlockName("doorDiamond").setBlockTextureName("portia:diamond_door");
+        GameRegistry.registerBlock(diamondDoor, "diamond_door");
+        emeraldDoor = new BlockEmeraldDoor(Material.iron).setHardness(7.5F).setStepSound(Block.soundTypeMetal).setBlockName("doorEmerald").setBlockTextureName("portia:emerald_door");
+        GameRegistry.registerBlock(emeraldDoor, "emerald_door");
 
         chain = new Item().setUnlocalizedName("chain").setTextureName("portia:chain").setCreativeTab(portiaItems);
         GameRegistry.registerItem(chain, "chain");
@@ -109,6 +126,12 @@ public class Main {
         GameRegistry.registerItem(redstoneLeggings, "redstone_leggings");
         redstoneBoots = new RedstoneArmor(redstoneArmor, 0, 3).setUnlocalizedName("redstoneBoots").setTextureName("portia:redstone_boots").setCreativeTab(portiaItems);
         GameRegistry.registerItem(redstoneBoots, "redstone_boots");
+        goldenDoorI = new ItemGoldenDoor(Material.iron).setUnlocalizedName("doorGolden").setTextureName("portia:golden_door").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(goldenDoorI, "golden_door_item");
+        diamondDoorI = new ItemDiamondDoor(Material.iron).setUnlocalizedName("doorDiamond").setTextureName("portia:diamond_door").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(diamondDoorI, "diamond_door_item");
+        emeraldDoorI = new ItemEmeraldDoor(Material.iron).setUnlocalizedName("doorEmerald").setTextureName("portia:emerald_door").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(emeraldDoorI, "emerald_door_item");
     }
     @EventHandler
     public void init(FMLInitializationEvent event) {
@@ -141,6 +164,9 @@ public class Main {
         GameRegistry.addRecipe(new ItemStack(redstoneChestplate), new Object[]{"R R", "RRR", "RRR", 'R', Items.redstone});
         GameRegistry.addRecipe(new ItemStack(redstoneLeggings), new Object[]{"RRR", "R R", "R R", 'R', Items.redstone});
         GameRegistry.addRecipe(new ItemStack(redstoneBoots), new Object[]{"R R", "R R", 'R', Items.redstone});
+        GameRegistry.addRecipe(new ItemStack(goldenDoorI), new Object[]{"GG", "GG", "GG", 'G', Items.gold_ingot});
+        GameRegistry.addRecipe(new ItemStack(diamondDoorI), new Object[]{"DD", "DD", "DD", 'D', Items.diamond});
+        GameRegistry.addRecipe(new ItemStack(emeraldDoorI), new Object[]{"EE", "EE", "EE", 'E', Items.emerald});
 
         GameRegistry.addRecipe(new ItemStack(oldCloth, 1, 0), new Object[]{"W", 'W', new ItemStack(Blocks.wool, 1, 0)});
         GameRegistry.addRecipe(new ItemStack(oldCloth, 1, 1), new Object[]{"W", 'W', new ItemStack(Blocks.wool, 1, 1)});

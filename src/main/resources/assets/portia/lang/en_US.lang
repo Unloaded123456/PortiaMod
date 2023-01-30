@@ -94,9 +94,11 @@ tile.cobbleColored_brown.name=Brown Cobblestone
 tile.cobbleColored_green.name=Green Cobblestone
 tile.cobbleColored_red.name=Red Cobblestone
 tile.cobbleColored_black.name=Black Cobblestone
+tile.doorGolden.name=Golden Door
+tile.doorDiamond.name=Diamond Door
+tile.doorEmerald.name=Emerald Door
 
 tile.barrier.name=Barrier
-tile.null.name=§4Undefined block!
 
 item.ironNugget.name=Iron Nugget
 item.chain.name=Chain
@@ -118,6 +120,9 @@ item.redstoneHelmet.name=Redstone Helmet
 item.redstoneChestplate.name=Redstone Chestplate
 item.redstoneLeggings.name=Redstone Leggings
 item.redstoneBoots.name=Redstone Boots
+item.doorGolden.name=Golden Door
+item.doorDiamond.name=Diamond Door
+item.doorEmerald.name=Emerald Door
 
 itemGroup.portiaBlocks=Portia Blocks
 itemGroup.portiaItems=Portia Items

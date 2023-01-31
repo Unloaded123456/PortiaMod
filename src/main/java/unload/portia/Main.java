@@ -23,7 +23,7 @@ import unload.portia.specialblocks.*;
 @Mod(modid = "portia", name = "Portia", version = "0.3.2")
 public class Main {
 
-    public static Block oldCloth;
+	public static Block oldCloth;
     public static Block barrier;
     public static Block newConcrete;
     public static Block glazedTerracotta;
@@ -41,8 +41,11 @@ public class Main {
     public static final ItemArmor.ArmorMaterial redstoneArmor = EnumHelper.addArmorMaterial("redstone_armor", 25, new int[]{2,6,3,2}, 23);
     public static final Item.ToolMaterial lapisItems = EnumHelper.addToolMaterial("lapis_items", 2, 500, 1.6F, 1F, 38);
     public static final ItemArmor.ArmorMaterial lapisArmor = EnumHelper.addArmorMaterial("lapis_armor", 21, new int[]{2,5,3,2}, 40);
+    public static final ItemArmor.ArmorMaterial diamondChainArmor = EnumHelper.addArmorMaterial("diamond_chain_armor", 34, new int[]{3,7,5,3}, 14);
+    public static final ItemArmor.ArmorMaterial goldenChainArmor = EnumHelper.addArmorMaterial("golden_chain_armor", 14, new int[]{1,2,3,1}, 35);
     public static Item chain;
     public static Item diamondChain;
+    public static Item goldenChain;
     public static Item ironNugget;
     public static Item diamondNugget;
     public static Item emeraldPickaxe;
@@ -72,6 +75,17 @@ public class Main {
     public static Item lapisChestplate;
     public static Item lapisLeggings;
     public static Item lapisBoots;
+    public static Item diamondChainHelmet;
+    public static Item diamondChainChestplate;
+    public static Item diamondChainLeggings;
+    public static Item diamondChainBoots;
+    public static Item goldenChainHelmet;
+    public static Item goldenChainChestplate;
+    public static Item goldenChainLeggings;
+    public static Item goldenChainBoots;
+
+    public static Item forgeStyle;
+    public static Item minecraftStyle;
 
     public static Item goldenDoorI;
     public static Item diamondDoorI;
@@ -104,6 +118,8 @@ public class Main {
         GameRegistry.registerItem(chain, "chain");
         diamondChain = new Item().setUnlocalizedName("diamondChain").setTextureName("portia:diamond_chain").setCreativeTab(portiaItems);
         GameRegistry.registerItem(diamondChain, "diamond_chain");
+        goldenChain = new Item().setUnlocalizedName("goldenChain").setTextureName("portia:golden_chain").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(goldenChain, "golden_chain");
         ironNugget = new Item().setUnlocalizedName("ironNugget").setTextureName("portia:iron_nugget").setCreativeTab(portiaItems);
         GameRegistry.registerItem(ironNugget, "iron_nugget");
         diamondNugget = new Item().setUnlocalizedName("diamondNugget").setTextureName("portia:diamond_nugget").setCreativeTab(portiaItems);
@@ -162,6 +178,23 @@ public class Main {
         GameRegistry.registerItem(lapisLeggings, "lapis_leggings");
         lapisBoots = new LapisArmor(lapisArmor, 0, 3).setUnlocalizedName("lapisBoots").setTextureName("portia:lapis_boots").setCreativeTab(portiaItems);
         GameRegistry.registerItem(lapisBoots, "lapis_boots");
+        diamondChainHelmet = new DiamondChainArmor(diamondChainArmor, 0, 0).setUnlocalizedName("diamondChainHelmet").setTextureName("portia:diamond_chain_helmet").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(diamondChainHelmet, "diamond_chainmail_helmet");
+        diamondChainChestplate = new DiamondChainArmor(diamondChainArmor, 0, 1).setUnlocalizedName("diamondChainChestplate").setTextureName("portia:diamond_chain_chestplate").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(diamondChainChestplate, "diamond_chainmail_chestplate");
+        diamondChainLeggings = new DiamondChainArmor(diamondChainArmor, 0, 2).setUnlocalizedName("diamondChainLeggings").setTextureName("portia:diamond_chain_leggings").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(diamondChainLeggings, "diamond_chainmail_leggings");
+        diamondChainBoots = new DiamondChainArmor(diamondChainArmor, 0, 3).setUnlocalizedName("diamondChainBoots").setTextureName("portia:diamond_chain_boots").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(diamondChainBoots, "diamond_chainmail_boots");
+        goldenChainHelmet = new GoldenChainArmor(goldenChainArmor, 0, 0).setUnlocalizedName("goldenChainHelmet").setTextureName("portia:golden_chain_helmet").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(goldenChainHelmet, "golden_chainmail_helmet");
+        goldenChainChestplate = new GoldenChainArmor(goldenChainArmor, 0, 1).setUnlocalizedName("goldenChainChestplate").setTextureName("portia:golden_chain_chestplate").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(goldenChainChestplate, "golden_chainmail_chestplate");
+        goldenChainLeggings = new GoldenChainArmor(goldenChainArmor, 0, 2).setUnlocalizedName("goldenChainLeggings").setTextureName("portia:golden_chain_leggings").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(goldenChainLeggings, "golden_chainmail_leggings");
+        goldenChainBoots = new GoldenChainArmor(goldenChainArmor, 0, 3).setUnlocalizedName("goldenChainBoots").setTextureName("portia:golden_chain_boots").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(goldenChainBoots, "golden_chainmail_boots");
+
         goldenDoorI = new ItemGoldenDoor(Material.iron).setUnlocalizedName("doorGolden").setTextureName("portia:golden_door").setCreativeTab(portiaBlocks);
         GameRegistry.registerItem(goldenDoorI, "golden_door_item");
         diamondDoorI = new ItemDiamondDoor(Material.iron).setUnlocalizedName("doorDiamond").setTextureName("portia:diamond_door").setCreativeTab(portiaBlocks);
@@ -182,6 +215,9 @@ public class Main {
 
         GameRegistry.addRecipe(new ItemStack(chain), new Object[]{"C", "C", "C", 'C', ironNugget});
         GameRegistry.addRecipe(new ItemStack(ironNugget, 9), new Object[]{"I", 'I', Items.iron_ingot});
+        GameRegistry.addRecipe(new ItemStack(diamondChain), new Object[]{"C", "C", "C", 'C', diamondNugget});
+        GameRegistry.addRecipe(new ItemStack(diamondNugget, 9), new Object[]{"I", 'I', Items.diamond});
+        GameRegistry.addRecipe(new ItemStack(goldenChain), new Object[]{"N", "N", "N", 'N', Items.gold_nugget});
         GameRegistry.addRecipe(new ItemStack(emeraldPickaxe), new Object[]{"EEE", " S ", " S ", 'E', Items.emerald, 'S', Items.stick});
         GameRegistry.addRecipe(new ItemStack(emeraldAxe), new Object[]{"EE", "ES", " S", 'E', Items.emerald, 'S', Items.stick});
         GameRegistry.addRecipe(new ItemStack(emeraldShovel), new Object[]{"E", "S", "S", 'E', Items.emerald, 'S', Items.stick});
@@ -209,6 +245,14 @@ public class Main {
         GameRegistry.addRecipe(new ItemStack(lapisChestplate), new Object[]{"L L", "LLL", "LLL", 'L', new ItemStack(Items.dye, 1, 4)});
         GameRegistry.addRecipe(new ItemStack(lapisLeggings), new Object[]{"LLL", "L L", "L L", 'L', new ItemStack(Items.dye, 1, 4)});
         GameRegistry.addRecipe(new ItemStack(lapisBoots), new Object[]{"L L", "L L", 'L', new ItemStack(Items.dye, 1, 4)});
+        GameRegistry.addRecipe(new ItemStack(diamondChainHelmet), new Object[]{"DDD", "D D", 'D', diamondChain});
+        GameRegistry.addRecipe(new ItemStack(diamondChainChestplate), new Object[]{"D D", "DDD", "DDD", 'D', diamondChain});
+        GameRegistry.addRecipe(new ItemStack(diamondChainLeggings), new Object[]{"DDD", "D D", "D D", 'D', diamondChain});
+        GameRegistry.addRecipe(new ItemStack(diamondChainBoots), new Object[]{"D D", "D D", 'D', diamondChain});
+        GameRegistry.addRecipe(new ItemStack(goldenChainHelmet), new Object[]{"GGG", "G G", 'G', goldenChain});
+        GameRegistry.addRecipe(new ItemStack(goldenChainChestplate), new Object[]{"G G", "GGG", "GGG", 'G', goldenChain});
+        GameRegistry.addRecipe(new ItemStack(goldenChainLeggings), new Object[]{"GGG", "G G", "G G", 'G', goldenChain});
+        GameRegistry.addRecipe(new ItemStack(goldenChainBoots), new Object[]{"G G", "G G", 'G', goldenChain});
         GameRegistry.addRecipe(new ItemStack(goldenDoorI), new Object[]{"GG", "GG", "GG", 'G', Items.gold_ingot});
         GameRegistry.addRecipe(new ItemStack(diamondDoorI), new Object[]{"DD", "DD", "DD", 'D', Items.diamond});
         GameRegistry.addRecipe(new ItemStack(emeraldDoorI), new Object[]{"EE", "EE", "EE", 'E', Items.emerald});

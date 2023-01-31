@@ -17,11 +17,10 @@ import net.minecraft.item.ItemDoor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import unload.portia.access.*;
-import unload.portia.armor.EmeraldArmor;
-import unload.portia.armor.RedstoneArmor;
+import unload.portia.armor.*;
 import unload.portia.specialblocks.*;
 
-@Mod(modid = "portia", name = "Portia", version = "0.2")
+@Mod(modid = "portia", name = "Portia", version = "0.3.2")
 public class Main {
 
 	public static Block oldCloth;
@@ -34,13 +33,18 @@ public class Main {
     public static Block goldenDoor;
     public static Block diamondDoor;
     public static Block emeraldDoor;
+    public static Block nullTexture;
 
     public static final Item.ToolMaterial emeraldItems = EnumHelper.addToolMaterial("emerald_items", 3, 950, 2.8F, 2.5F, 15);
     public static final ItemArmor.ArmorMaterial emeraldArmor = EnumHelper.addArmorMaterial("emerald_armor", 29, new int[]{3,7,5,3}, 18);
-    public static final Item.ToolMaterial redstoneItems = EnumHelper.addToolMaterial("redstone_items", 2, 680, 1.9F, 1.5F, 28);
-    public static final ItemArmor.ArmorMaterial redstoneArmor = EnumHelper.addArmorMaterial("redstone_armor", 25, new int[]{2,6,3,2}, 32);
+    public static final Item.ToolMaterial redstoneItems = EnumHelper.addToolMaterial("redstone_items", 2, 680, 1.9F, 1.5F, 21);
+    public static final ItemArmor.ArmorMaterial redstoneArmor = EnumHelper.addArmorMaterial("redstone_armor", 25, new int[]{2,6,3,2}, 23);
+    public static final Item.ToolMaterial lapisItems = EnumHelper.addToolMaterial("lapis_items", 2, 500, 1.6F, 1F, 38);
+    public static final ItemArmor.ArmorMaterial lapisArmor = EnumHelper.addArmorMaterial("lapis_armor", 21, new int[]{2,5,3,2}, 40);
     public static Item chain;
+    public static Item diamondChain;
     public static Item ironNugget;
+    public static Item diamondNugget;
     public static Item emeraldPickaxe;
     public static Item emeraldAxe;
     public static Item emeraldShovel;
@@ -59,6 +63,15 @@ public class Main {
     public static Item redstoneChestplate;
     public static Item redstoneLeggings;
     public static Item redstoneBoots;
+    public static Item lapisPickaxe;
+    public static Item lapisAxe;
+    public static Item lapisShovel;
+    public static Item lapisHoe;
+    public static Item lapisSword;
+    public static Item lapisHelmet;
+    public static Item lapisChestplate;
+    public static Item lapisLeggings;
+    public static Item lapisBoots;
 
     public static Item goldenDoorI;
     public static Item diamondDoorI;
@@ -85,11 +98,16 @@ public class Main {
         GameRegistry.registerBlock(diamondDoor, "diamond_door");
         emeraldDoor = new BlockEmeraldDoor(Material.iron).setHardness(7.5F).setStepSound(Block.soundTypeMetal).setBlockName("doorEmerald").setBlockTextureName("portia:emerald_door");
         GameRegistry.registerBlock(emeraldDoor, "emerald_door");
-
+        nullTexture = new BlockNormal(Material.rock);
+        GameRegistry.registerBlock(nullTexture, "nulltex");
         chain = new Item().setUnlocalizedName("chain").setTextureName("portia:chain").setCreativeTab(portiaItems);
         GameRegistry.registerItem(chain, "chain");
+        diamondChain = new Item().setUnlocalizedName("diamondChain").setTextureName("portia:diamond_chain").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(diamondChain, "diamond_chain");
         ironNugget = new Item().setUnlocalizedName("ironNugget").setTextureName("portia:iron_nugget").setCreativeTab(portiaItems);
         GameRegistry.registerItem(ironNugget, "iron_nugget");
+        diamondNugget = new Item().setUnlocalizedName("diamondNugget").setTextureName("portia:diamond_nugget").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(diamondNugget, "diamond_nugget");
         emeraldPickaxe = new ModPickaxe(emeraldItems).setUnlocalizedName("emeraldPickaxe").setTextureName("portia:emerald_pickaxe").setCreativeTab(portiaItems);
         GameRegistry.registerItem(emeraldPickaxe, "emerald_pickaxe");
         emeraldAxe = new ModAxe(emeraldItems).setUnlocalizedName("emeraldAxe").setTextureName("portia:emerald_axe").setCreativeTab(portiaItems);
@@ -126,11 +144,29 @@ public class Main {
         GameRegistry.registerItem(redstoneLeggings, "redstone_leggings");
         redstoneBoots = new RedstoneArmor(redstoneArmor, 0, 3).setUnlocalizedName("redstoneBoots").setTextureName("portia:redstone_boots").setCreativeTab(portiaItems);
         GameRegistry.registerItem(redstoneBoots, "redstone_boots");
-        goldenDoorI = new ItemGoldenDoor(Material.iron).setUnlocalizedName("doorGolden").setTextureName("portia:golden_door").setCreativeTab(portiaItems);
+        lapisPickaxe = new ModPickaxe(lapisItems).setUnlocalizedName("lapisPickaxe").setTextureName("portia:lapis_pickaxe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisPickaxe, "lapis_pickaxe");
+        lapisAxe = new ModAxe(lapisItems).setUnlocalizedName("lapisAxe").setTextureName("portia:lapis_axe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisAxe, "lapis_axe");
+        lapisShovel = new ModSpade(lapisItems).setUnlocalizedName("lapisShovel").setTextureName("portia:lapis_shovel").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisShovel, "lapis_shovel");
+        lapisHoe = new ModHoe(lapisItems).setUnlocalizedName("lapisHoe").setTextureName("portia:lapis_hoe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisHoe, "lapis_hoe");
+        lapisSword = new ModSword(lapisItems).setUnlocalizedName("lapisSword").setTextureName("portia:lapis_sword").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisSword, "lapis_sword");
+        lapisHelmet = new LapisArmor(lapisArmor, 0, 0).setUnlocalizedName("lapisHelmet").setTextureName("portia:lapis_helmet").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisHelmet, "lapis_helmet");
+        lapisChestplate = new LapisArmor(lapisArmor, 0, 1).setUnlocalizedName("lapisChestplate").setTextureName("portia:lapis_chestplate").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisChestplate, "lapis_chestplate");
+        lapisLeggings = new LapisArmor(lapisArmor, 0, 2).setUnlocalizedName("lapisLeggings").setTextureName("portia:lapis_leggings").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisLeggings, "lapis_leggings");
+        lapisBoots = new LapisArmor(lapisArmor, 0, 3).setUnlocalizedName("lapisBoots").setTextureName("portia:lapis_boots").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(lapisBoots, "lapis_boots");
+        goldenDoorI = new ItemGoldenDoor(Material.iron).setUnlocalizedName("doorGolden").setTextureName("portia:golden_door").setCreativeTab(portiaBlocks);
         GameRegistry.registerItem(goldenDoorI, "golden_door_item");
-        diamondDoorI = new ItemDiamondDoor(Material.iron).setUnlocalizedName("doorDiamond").setTextureName("portia:diamond_door").setCreativeTab(portiaItems);
+        diamondDoorI = new ItemDiamondDoor(Material.iron).setUnlocalizedName("doorDiamond").setTextureName("portia:diamond_door").setCreativeTab(portiaBlocks);
         GameRegistry.registerItem(diamondDoorI, "diamond_door_item");
-        emeraldDoorI = new ItemEmeraldDoor(Material.iron).setUnlocalizedName("doorEmerald").setTextureName("portia:emerald_door").setCreativeTab(portiaItems);
+        emeraldDoorI = new ItemEmeraldDoor(Material.iron).setUnlocalizedName("doorEmerald").setTextureName("portia:emerald_door").setCreativeTab(portiaBlocks);
         GameRegistry.registerItem(emeraldDoorI, "emerald_door_item");
     }
     @EventHandler
@@ -164,6 +200,15 @@ public class Main {
         GameRegistry.addRecipe(new ItemStack(redstoneChestplate), new Object[]{"R R", "RRR", "RRR", 'R', Items.redstone});
         GameRegistry.addRecipe(new ItemStack(redstoneLeggings), new Object[]{"RRR", "R R", "R R", 'R', Items.redstone});
         GameRegistry.addRecipe(new ItemStack(redstoneBoots), new Object[]{"R R", "R R", 'R', Items.redstone});
+        GameRegistry.addRecipe(new ItemStack(lapisPickaxe), new Object[]{"LLL", " S ", " S ", 'L', new ItemStack(Items.dye, 1, 4), 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(lapisAxe), new Object[]{"RR", "RS", " S", 'R', new ItemStack(Items.dye, 1, 4), 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(lapisShovel), new Object[]{"L", "S", "S", 'L', new ItemStack(Items.dye, 1, 4), 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(lapisHoe), new Object[]{"LL", " S", " S", 'L', new ItemStack(Items.dye, 1, 4), 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(lapisSword), new Object[]{"L", "L", "S", 'L', new ItemStack(Items.dye, 1, 4), 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(lapisHelmet), new Object[]{"LLL", "L L", 'L', new ItemStack(Items.dye, 1, 4)});
+        GameRegistry.addRecipe(new ItemStack(lapisChestplate), new Object[]{"L L", "LLL", "LLL", 'L', new ItemStack(Items.dye, 1, 4)});
+        GameRegistry.addRecipe(new ItemStack(lapisLeggings), new Object[]{"LLL", "L L", "L L", 'L', new ItemStack(Items.dye, 1, 4)});
+        GameRegistry.addRecipe(new ItemStack(lapisBoots), new Object[]{"L L", "L L", 'L', new ItemStack(Items.dye, 1, 4)});
         GameRegistry.addRecipe(new ItemStack(goldenDoorI), new Object[]{"GG", "GG", "GG", 'G', Items.gold_ingot});
         GameRegistry.addRecipe(new ItemStack(diamondDoorI), new Object[]{"DD", "DD", "DD", 'D', Items.diamond});
         GameRegistry.addRecipe(new ItemStack(emeraldDoorI), new Object[]{"EE", "EE", "EE", 'E', Items.emerald});

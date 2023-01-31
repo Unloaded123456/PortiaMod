@@ -97,7 +97,6 @@ tile.cobbleColored_black.name=Black Cobblestone
 tile.doorGolden.name=Golden Door
 tile.doorDiamond.name=Diamond Door
 tile.doorEmerald.name=Emerald Door
-
 tile.barrier.name=Barrier
 
 item.ironNugget.name=Iron Nugget

@@ -23,7 +23,7 @@ import unload.portia.specialblocks.*;
 @Mod(modid = "portia", name = "Portia", version = "0.3.2")
 public class Main {
 
-	public static Block oldCloth;
+    public static Block oldCloth;
     public static Block barrier;
     public static Block newConcrete;
     public static Block glazedTerracotta;

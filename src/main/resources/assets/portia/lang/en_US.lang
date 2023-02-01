@@ -97,6 +97,7 @@ tile.cobbleColored_black.name=Black Cobblestone
 tile.doorGolden.name=Golden Door
 tile.doorDiamond.name=Diamond Door
 tile.doorEmerald.name=Emerald Door
+
 tile.barrier.name=Barrier
 
 item.ironNugget.name=Iron Nugget
@@ -136,9 +137,15 @@ item.goldenChainHelmet.name=Golden Chain Helmet
 item.goldenChainChestplate.name=Golden Chain Chestplate
 item.goldenChainLeggings.name=Golden Chain Leggings
 item.goldenChainBoots.name=Golden Chain Boots
+item.emeraldChainHelmet.name=Emerald Chain Helmet
+item.emeraldChainChestplate.name=Emerald Chain Chestplate
+item.emeraldChainLeggings.name=Emerald Chain Leggings
+item.emeraldChainBoots.name=Emerald Chain Boots
 item.goldenChain.name=Golden Chain
+item.emeraldChain.name=Emerald Chain
 item.diamondChain.name=Diamond Chain
 item.diamondNugget.name=Diamond Nugget
+item.emeraldNugget.name=Emerald Nugget
 item.doorGolden.name=Golden Door
 item.doorDiamond.name=Diamond Door
 item.doorEmerald.name=Emerald Door

@@ -9,12 +9,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemDoor;
-import net.minecraft.item.ItemStack;
+import net.minecraft.init.*;
+import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
 import unload.portia.access.*;
 import unload.portia.armor.*;
@@ -34,6 +30,7 @@ public class Main {
     public static Block diamondDoor;
     public static Block emeraldDoor;
     public static Block nullTexture;
+    public static Block coloredGlowstone;
 
     public static final Item.ToolMaterial emeraldItems = EnumHelper.addToolMaterial("emerald_items", 3, 950, 2.8F, 2.5F, 15);
     public static final ItemArmor.ArmorMaterial emeraldArmor = EnumHelper.addArmorMaterial("emerald_armor", 29, new int[]{3,7,5,3}, 18);
@@ -44,6 +41,8 @@ public class Main {
     public static final ItemArmor.ArmorMaterial diamondChainArmor = EnumHelper.addArmorMaterial("diamond_chain_armor", 34, new int[]{3,7,5,3}, 14);
     public static final ItemArmor.ArmorMaterial goldenChainArmor = EnumHelper.addArmorMaterial("golden_chain_armor", 14, new int[]{1,2,3,1}, 35);
     public static final ItemArmor.ArmorMaterial emeraldChainArmor = EnumHelper.addArmorMaterial("emerald_chain_armor", 23, new int[]{3,5,4,3}, 25);
+    public static final Item.ToolMaterial glowstoneItems = EnumHelper.addToolMaterial("glowstone_items", 2, 600, 2.0F, 1.75F, 29);
+    public static final ItemArmor.ArmorMaterial glowstoneArmor = EnumHelper.addArmorMaterial("glowstone_armor",28, new int[]{1,3,5,1}, 32);
     public static Item chain;
     public static Item diamondChain;
     public static Item goldenChain;
@@ -90,6 +89,16 @@ public class Main {
     public static Item emeraldChainChestplate;
     public static Item emeraldChainLeggings;
     public static Item emeraldChainBoots;
+    public static Item glowstonePickaxe;
+    public static Item glowstoneAxe;
+    public static Item glowstoneShovel;
+    public static Item glowstoneHoe;
+    public static Item glowstoneSword;
+    public static Item glowstoneHelmet;
+    public static Item glowstoneChestplate;
+    public static Item glowstoneLeggings;
+    public static Item glowstoneBoots;
+
 
     public static Item goldenDoorI;
     public static Item diamondDoorI;
@@ -118,6 +127,8 @@ public class Main {
         GameRegistry.registerBlock(emeraldDoor, "emerald_door");
         nullTexture = new BlockNormal(Material.rock);
         GameRegistry.registerBlock(nullTexture, "nulltex");
+        coloredGlowstone = new BlockColored(Material.glass).setHardness(0.3F).setLightLevel(1.0F).setStepSound(Block.soundTypeGlass).setBlockName("glowColored").setBlockTextureName("portia:glowcolored").setCreativeTab(portiaBlocks);
+        GameRegistry.registerBlock(coloredGlowstone, MetadataItemBlocks.class, "glowstone_colored");
 
         chain = new Item().setUnlocalizedName("chain").setTextureName("portia:chain").setCreativeTab(portiaItems);
         GameRegistry.registerItem(chain, "chain");
@@ -212,6 +223,24 @@ public class Main {
         GameRegistry.registerItem(emeraldChainLeggings, "emerald_chainmail_leggings");
         emeraldChainBoots = new EmeraldChainArmor(emeraldChainArmor, 0, 3).setUnlocalizedName("emeraldChainBoots").setTextureName("portia:emerald_chain_boots").setCreativeTab(portiaItems);
         GameRegistry.registerItem(emeraldChainBoots, "emerald_chainmail_boots");
+        glowstonePickaxe = new ModPickaxe(glowstoneItems).setUnlocalizedName("glowstonePickaxe").setTextureName("portia:glowstone_pickaxe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstonePickaxe, "glowstone_pickaxe");
+        glowstoneAxe = new ModAxe(glowstoneItems).setUnlocalizedName("glowstoneAxe").setTextureName("portia:glowstone_axe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstoneAxe, "glowstone_axe");
+        glowstoneShovel = new ModSpade(glowstoneItems).setUnlocalizedName("glowstoneShovel").setTextureName("portia:glowstone_shovel").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstoneShovel, "glowstone_shovel");
+        glowstoneHoe = new ModHoe(glowstoneItems).setUnlocalizedName("glowstoneHoe").setTextureName("portia:glowstone_hoe").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstoneHoe, "glowstone_hoe");
+        glowstoneSword = new ModSword(glowstoneItems).setUnlocalizedName("glowstoneSword").setTextureName("portia:glowstone_sword").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstoneSword, "glowstone_sword");
+        glowstoneHelmet = new GlowstoneArmor(glowstoneArmor, 0, 0).setUnlocalizedName("glowstoneHelmet").setTextureName("portia:glowstone_helmet").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstoneHelmet, "glowstone_helmet");
+        glowstoneChestplate = new GlowstoneArmor(glowstoneArmor, 0, 1).setUnlocalizedName("glowstoneChestplate").setTextureName("portia:glowstone_chestplate").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstoneChestplate, "glowstone_chestplate");
+        glowstoneLeggings = new GlowstoneArmor(glowstoneArmor, 0, 2).setUnlocalizedName("glowstoneLeggings").setTextureName("portia:glowstone_leggings").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstoneLeggings, "glowstone_leggings");
+        glowstoneBoots = new GlowstoneArmor(glowstoneArmor, 0, 3).setUnlocalizedName("glowstoneBoots").setTextureName("portia:glowstone_boots").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(glowstoneBoots, "glowstone_boots");
 
         goldenDoorI = new ItemGoldenDoor(Material.iron).setUnlocalizedName("doorGolden").setTextureName("portia:golden_door").setCreativeTab(portiaBlocks);
         GameRegistry.registerItem(goldenDoorI, "golden_door_item");
@@ -278,6 +307,15 @@ public class Main {
         GameRegistry.addRecipe(new ItemStack(emeraldChainChestplate), new Object[]{"E E", "EEE", "EEE", 'E', emeraldChain});
         GameRegistry.addRecipe(new ItemStack(emeraldChainLeggings), new Object[]{"EEE", "E E", "E E", 'E', emeraldChain});
         GameRegistry.addRecipe(new ItemStack(emeraldChainBoots), new Object[]{"E E", "E E", 'E', emeraldChain});
+        GameRegistry.addRecipe(new ItemStack(glowstonePickaxe), new Object[]{"GGG", " S ", " S ", 'G', Blocks.glowstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(glowstoneAxe), new Object[]{"GG", "GS", " S", 'G', Blocks.glowstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(glowstoneShovel), new Object[]{"G", "S", "S", 'G', Blocks.glowstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(glowstoneHoe), new Object[]{"GG", " S", " S", 'G', Blocks.glowstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(glowstoneSword), new Object[]{"G", "G", "S", 'G', Blocks.glowstone, 'S', Items.stick});
+        GameRegistry.addRecipe(new ItemStack(glowstoneHelmet), new Object[]{"GGG", "G G", 'G', Blocks.glowstone});
+        GameRegistry.addRecipe(new ItemStack(glowstoneChestplate), new Object[]{"G G", "GGG", "GGG", 'G', Blocks.glowstone});
+        GameRegistry.addRecipe(new ItemStack(glowstoneLeggings), new Object[]{"GGG", "G G", "G G", 'G', Blocks.glowstone});
+        GameRegistry.addRecipe(new ItemStack(glowstoneBoots), new Object[]{"G G", "G G", 'G', Blocks.glowstone});
         GameRegistry.addRecipe(new ItemStack(goldenDoorI), new Object[]{"GG", "GG", "GG", 'G', Items.gold_ingot});
         GameRegistry.addRecipe(new ItemStack(diamondDoorI), new Object[]{"DD", "DD", "DD", 'D', Items.diamond});
         GameRegistry.addRecipe(new ItemStack(emeraldDoorI), new Object[]{"EE", "EE", "EE", 'E', Items.emerald});
@@ -366,6 +404,22 @@ public class Main {
         GameRegistry.addRecipe(new ItemStack(coloredStone, 1, 13), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 2), 'S', new ItemStack(Blocks.stone)});
         GameRegistry.addRecipe(new ItemStack(coloredStone, 1, 14), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 1), 'S', new ItemStack(Blocks.stone)});
         GameRegistry.addRecipe(new ItemStack(coloredStone, 1, 15), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 0), 'S', new ItemStack(Blocks.stone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 0), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 15), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 1), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 14), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 2), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 13), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 3), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 12), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 4), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 11), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 5), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 10), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 6), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 9), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 7), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 8), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 8), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 7), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 9), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 6), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 10), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 5), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 11), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 4), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 12), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 3), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 13), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 2), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 14), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 1), 'S', new ItemStack(Blocks.glowstone)});
+        GameRegistry.addRecipe(new ItemStack(coloredGlowstone, 1, 15), new Object[]{" D ", "DSD", " D ", 'D', new ItemStack(Items.dye, 1, 0), 'S', new ItemStack(Blocks.glowstone)});
 
     }
     @EventHandler

@@ -13,10 +13,11 @@ import net.minecraft.init.*;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
 import unload.portia.access.*;
+import unload.portia.access.items.*;
 import unload.portia.armor.*;
 import unload.portia.specialblocks.*;
 
-@Mod(modid = "portia", name = "Portia", version = "0.3.5")
+@Mod(modid = "portia", name = "Portia", version = "0.3.7")
 public class Main {
 
 	public static Block oldCloth;
@@ -99,6 +100,8 @@ public class Main {
     public static Item glowstoneLeggings;
     public static Item glowstoneBoots;
 
+    public static Item ironApple;
+    public static Item diamondApple;
 
     public static Item goldenDoorI;
     public static Item diamondDoorI;
@@ -242,6 +245,11 @@ public class Main {
         glowstoneBoots = new GlowstoneArmor(glowstoneArmor, 0, 3).setUnlocalizedName("glowstoneBoots").setTextureName("portia:glowstone_boots").setCreativeTab(portiaItems);
         GameRegistry.registerItem(glowstoneBoots, "glowstone_boots");
 
+        ironApple = new ItemAppleIron(3, 1f, false).setUnlocalizedName("ironApple").setTextureName("portia:apple_iron").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(ironApple, "iron_apple");
+        diamondApple = new ItemAppleDiamond(7, 2.5f, false).setUnlocalizedName("diamondApple").setTextureName("portia:apple_diamond").setCreativeTab(portiaItems);
+        GameRegistry.registerItem(diamondApple, "diamond_apple");
+
         goldenDoorI = new ItemGoldenDoor(Material.iron).setUnlocalizedName("doorGolden").setTextureName("portia:golden_door").setCreativeTab(portiaBlocks);
         GameRegistry.registerItem(goldenDoorI, "golden_door_item");
         diamondDoorI = new ItemDiamondDoor(Material.iron).setUnlocalizedName("doorDiamond").setTextureName("portia:diamond_door").setCreativeTab(portiaBlocks);
@@ -319,6 +327,12 @@ public class Main {
         GameRegistry.addRecipe(new ItemStack(goldenDoorI), new Object[]{"GG", "GG", "GG", 'G', Items.gold_ingot});
         GameRegistry.addRecipe(new ItemStack(diamondDoorI), new Object[]{"DD", "DD", "DD", 'D', Items.diamond});
         GameRegistry.addRecipe(new ItemStack(emeraldDoorI), new Object[]{"EE", "EE", "EE", 'E', Items.emerald});
+
+        GameRegistry.addRecipe(new ItemStack(ironApple, 1, 0), new Object[]{"III", "IAI", "III", 'I', Items.iron_ingot, 'A', Items.apple});
+        GameRegistry.addRecipe(new ItemStack(ironApple, 1, 1), new Object[]{"III", "IAI", "III", 'I', Blocks.iron_block, 'A', Items.apple});
+        GameRegistry.addRecipe(new ItemStack(diamondApple, 1, 0), new Object[]{"III", "IAI", "III", 'I', diamondNugget, 'A', Items.apple});
+        GameRegistry.addRecipe(new ItemStack(diamondApple, 1, 1), new Object[]{"III", "IAI", "III", 'I', Items.diamond, 'A', Items.apple});
+        GameRegistry.addRecipe(new ItemStack(diamondApple, 1, 2), new Object[]{"III", "IAI", "III", 'I', Blocks.diamond_block, 'A', Items.apple});
 
         GameRegistry.addRecipe(new ItemStack(Items.iron_ingot), new Object[]{"III", "III", "III", 'I', ironNugget});
         GameRegistry.addRecipe(new ItemStack(Items.diamond), new Object[]{"III", "III", "III", 'I', diamondNugget});
